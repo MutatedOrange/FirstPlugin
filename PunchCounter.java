@@ -12,9 +12,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import me.MutatedOrange.FirstPlugin.Utils;
 
 public class PunchCounter implements Listener, CommandExecutor {
-	int blocksPunched;
+	private int blocksPunched;
 
-	String igprefix = "§1[§bFirstPlugin§1]§7: §e";
+	String igprefix = "Â§1[Â§bFirstPluginÂ§1]Â§7: Â§e";
 	//listens for if player is interacting
 	@EventHandler
 	public void onInteract(PlayerInteractEvent event) {
@@ -34,10 +34,9 @@ public class PunchCounter implements Listener, CommandExecutor {
 		}	
 	}
 	
-	public int addPunches(int numToAdd) {		
-		blocksPunched = blocksPunched + numToAdd;
-		return blocksPunched;		
-	}
+    public void addPunches(int numToAdd) {        
+        this.blocksPunched = this.blocksPunched + numToAdd;
+    }
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {	
@@ -46,10 +45,8 @@ public class PunchCounter implements Listener, CommandExecutor {
 		if(label.equalsIgnoreCase("punches")) {
 			
 			Player player = (Player) sender;
-			addPunches(0);
-			player.sendMessage(Utils.chat(igprefix + "You have punched a block &8" + blocksPunched + "&e Times!"));
-			
-			
+			player.sendMessage(Utils.chat(igprefix + "You have punched a block &8" + String.valueOf(blocksPunched) + "&e Times!"));
+						
 		}
 		}
 		return true;
